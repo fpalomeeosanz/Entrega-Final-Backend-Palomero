@@ -23,7 +23,7 @@ const app = express();
 //MIDDLEWARES
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
-app.use('/static', express.static(__dirname + 'public'))
+app.use('/static', express.static(__dirname + '/public'))
 
 //SERVER
 const server = app.listen(options.server.port, ()=>{
