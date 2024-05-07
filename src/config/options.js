@@ -1,8 +1,9 @@
 import dotenv from "dotenv";
 dotenv.config();
 
-const PORT = process.env.PORT;
-const MONGO_URL = process.env.MONGO_URL;
+export const PORT = process.env.PORT;
+export const MONGO_URL = process.env.MONGO_URL;
+export const SECRET_SESSION = process.env.SECRET_SESSION;
 
 export const options = {
     server:{

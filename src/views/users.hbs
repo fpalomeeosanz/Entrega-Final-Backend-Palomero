@@ -1,0 +1,20 @@
+<h1>Listado de Usuarios</h1>
+{{#if isAdmin}}  <table>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+      {{#each users}}
+        <tr>
+          <td>{{this.name}}</td>
+          <td>{{this.email}}</td>
+          </tr>
+      {{/each}}
+    </tbody>
+  </table>
+{{else}}
+  <p>No tienes permisos para ver usuarios.</p>
+{{/if}}

@@ -1,0 +1,15 @@
+<h2>Pagina de login</h2>
+{{message}}
+<form method="post" action="/api/sessions/login">
+    <input type="email" placeholder="correo" name="email"/>
+    <br/><br/>
+    <input type="password" placeholder="contraseña" name="password"/>
+    <br/><br/>
+    <button type="submit">Iniciar sesion</button>
+</form>
+<hr>
+<p>¿Usas gihub? <a href="/api/sessions/github"><button>Entra con GitHub</button></a></p>
+<hr>
+<p>¿Olvidaste tu contraseña? <a href="/forgot-password"><button>Haz clic aquí</button></a></p>
+<hr>
+<p>¿No estás registrado? <a href="/register"><button>Regístrate aquí</button></a></p>
