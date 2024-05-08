@@ -1,5 +1,5 @@
 <div>
-<h1>Listado de Productos</h1>
+<h1 class="display-1" >Productos y actividades</h1>
 <ul>
   {{#each products}}
     <li>
@@ -21,6 +21,12 @@
   {{/if}}
 </div>
 <hr>
-<a href="/"><button>Salir</button></a>
-<a href="/current"><button>Ir a mi session</button></a>
+<a href="/"><button type="button" class="btn btn-primary"
+        style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+  Ir al Inicio
+</button></a>
+<a href="/current"><button type="button" class="btn btn-warning"
+        style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+  Ir a mi session
+</button></a>
 

@@ -75,4 +75,8 @@ router.get('/products', async (req, res) => {
     res.render('products');
 });
 
+router.get('/cart', async (req, res) => {
+    res.render('cart')
+})
+
 export { router as viewsRouter };

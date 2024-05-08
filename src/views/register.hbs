@@ -1,4 +1,4 @@
-<h2>Pagina de Registro</h2>
+<h1 class="display-1">Registrate</h1>
 <form method="post" action="/api/sessions/signup">
     <input type="text" placeholder="nombre" name="name"/>
     <br/><br/>
@@ -6,12 +6,20 @@
     <br/><br/>
     <input type="password" placeholder="contraseña" name="password"/>
     <br/><br/>
-    <button type="submit">registrarse</button>
+    <button type="submit"class="btn btn-secondary"
+        style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">registrarse</button>
 </form>
 <hr>
 <a href="/forgot-password">
-    <button>Restablecer constraseña</button>
+    <button type="button" class="btn btn-primary"
+        style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+     Reestablecer contraseña
+    </button>
 </a>
+<hr>
 <a href="/">
-    <button>Ir al inicio</button>
+     <button type="button" class="btn btn-primary"
+        style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+     Ir al Inicio
+    </button>
 </a>
