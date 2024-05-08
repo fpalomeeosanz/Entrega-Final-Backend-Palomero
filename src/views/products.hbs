@@ -3,12 +3,15 @@
 <ul>
   {{#each products}}
     <li>
-      <h2>{{this.code}}</h2>
+      <h2 class="text-primary-emphasis" >{{this.code}}</h2>
       <p>{{this.category}} </p>
-      <p>{{this.description}}</p>
-      <p>{{this.price}}</p>
-      <a href="/products/{{this._id}}">Ver detalles</a>
-    </li>
+      <p class="text-body-secondary">{{this.description}}</p>
+      <p class="text-body-tertiary">{{this.price}}</p>
+      <img src="{{this.thumbnail}}" class="rounded" style="height: 200px; margin: 20px;">
+   </li>
+    <a href="/products/{{this._id}}"><button type="button" class="btn btn-secondary"
+    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Agregar al carrito </button></a>
+<hr> 
   {{/each}}
 </ul>
 
