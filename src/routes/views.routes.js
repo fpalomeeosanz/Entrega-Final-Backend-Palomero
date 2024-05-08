@@ -3,6 +3,7 @@ import { verifyEmailTokenMW } from "../middlewares/auth.js";
 import usersModel from "../dao/models/usersModel.js";
 import productsModel from "../dao/models/productsModel.js";
 import { UserController } from "../controllers/users.controllres.js";
+import { ProductsController } from "../controllers/product.controllers.js";
 
 const router = Router();
 
@@ -25,7 +26,7 @@ router.get('/register', publicAccess, (req,res)=>{
 });
 
 router.get('/', publicAccess, (req,res)=>{
-    res.render("home");
+    res.render('home');
 });
 
 router.get('/login', publicAccess, (req,res)=>{
@@ -72,8 +73,11 @@ router.get("/users/:uid", async (req, res) => {
 });
 
 router.get('/products', async (req, res) => {
-    res.render('products');
+
+    const products = await productsModel.find().lean();
+    res.render('products', {products});
 });
+
 
 router.get('/cart', async (req, res) => {
     res.render('cart')
