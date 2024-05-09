@@ -29,7 +29,7 @@ router.put("/",async(req,res)=>{
         const {cartId, productId, quantity} = req.body;
         const cart = await cartsModel.findById(cartId);
 
-        cart.products.push({id:productId,quantity:quantity});
+        cart.products.push({product:productId,quantity:quantity});
         cart.save();
         res.send("producto agregado")
     } catch (error) {

@@ -79,28 +79,71 @@ router.get('/products', async (req, res) => {
     res.render('products', {products});
 });
 
-
 router.get('/cart', async (req, res) => {
-    res.render('cart')
+    
+    const user = req.user;
+    const { email, rol, cart} = user;
+    const carrito = await cartsModel.findById(cart);
+    
+    let arreglo = [];
+
+    for(let i=0; i< carrito.products.length; i++){
+        const aux = await productsModel.findById(carrito.products[i].product);
+        arreglo.push({
+            code: aux.code,
+            price: aux.price,
+            cantidad: carrito.products[i].quantity
+        });
+    }
+    res.render('cart', { 
+        user: { email, rol, cart },
+        cart: {products: arreglo}
+    });
 })
 
 router.get('/cart/:pid', async (req, res) => {
     const pid = req.params.pid;
-    const oneProduct = await productsModel.findById(pid);
     const user = req.user;
-    const { email, rol, cartId} = user;
-    const cart = await cartsModel.findById(cartId);
-    console.log(cart);
-    //cart.products.addToSet({
-    //    product: oneProduct,
-    //    quantity: 1
-    //});
-
-    //const test = await cartsModel.findById(pid);
-    //test.products.addToSet()
+    const { email, rol, cart} = user;
+    const carrito = await cartsModel.findById(cart);
+    let productInCart = false;
+    for(let i=0; i< carrito.products.length; i++){
+        if (carrito.products[i].product == pid){
+            carrito.products[i].quantity++;
+            productInCart = true;
+            break;
+        }
+    }
+    if(!productInCart){
+        carrito.products.push({
+            product: pid,
+            quantity: new Number(1)
+        });
+    }
     
+    carrito.save();
+    
+    let arreglo = [];
+    for(let i=0; i< carrito.products.length; i++){
+        const aux = await productsModel.findById(carrito.products[i].product);
+        arreglo.push({
+            code: aux.code,
+            price: aux.price,
+            cantidad: carrito.products[i].quantity
+        });
+    }
+    res.render('cart', { 
+        user: { email, rol, cart },
+        cart: {products: arreglo}
+    });
+});
 
-    res.render('cart', { user: { email, rol, cartId } });
+router.get('/purchase', async (req, res) => {
+    res.render('purchase');
+});
+
+router.get('/end', async (req, res) => {
+    res.render('end');
 });
 
 export { router as viewsRouter };
