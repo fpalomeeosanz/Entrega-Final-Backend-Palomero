@@ -4,6 +4,7 @@ import usersModel from "../dao/models/usersModel.js";
 import productsModel from "../dao/models/productsModel.js";
 import { UserController } from "../controllers/users.controllres.js";
 import { ProductsController } from "../controllers/product.controllers.js";
+import cartsModel from "../dao/models/cartsModel.js";
 
 const router = Router();
 
@@ -82,5 +83,24 @@ router.get('/products', async (req, res) => {
 router.get('/cart', async (req, res) => {
     res.render('cart')
 })
+
+router.get('/cart/:pid', async (req, res) => {
+    const pid = req.params.pid;
+    const oneProduct = await productsModel.findById(pid);
+    const user = req.user;
+    const { email, rol, cartId} = user;
+    const cart = await cartsModel.findById(cartId);
+    console.log(cart);
+    //cart.products.addToSet({
+    //    product: oneProduct,
+    //    quantity: 1
+    //});
+
+    //const test = await cartsModel.findById(pid);
+    //test.products.addToSet()
+    
+
+    res.render('cart', { user: { email, rol, cartId } });
+});
 
 export { router as viewsRouter };
